@@ -1,0 +1,28 @@
+<!--
+Inputs:
+    member : Member() [inherit]
+    country_list : List[Country()]
+    entity_list : List[Entity()]
+-->
+<div id="show_map" style="float:left;width:700px;" >
+<button  style="display:none;"
+ onclick="$$('selector').style.display='inherit';$$('show_map').style.display='none';$$('entity_browser_entity_list').style.display='none';$$('entity_browser_committee_list').style.display='none';"
+ >Show the map</button><br />
+ </div>
+<div id="entity_browser_entity_list" style="float:left;width:700px;" >
+
+</div>
+<div id="entity_browser_committee_list" style="float:right;width:240px;" >
+</div>
+
+<div id="selector" style="float:left;width:970px;" >
+    <select onchange ="entity_browser_entity_part_select()"  id="country_select">
+    {% for country in country_list %}
+    	{% if member.country != country %}
+      		<option   value="{{ country.name }}">{{ country.name }}</option>
+      	{% endif %}
+    {% endfor %}
+    </select>
+    <br />
+    <div style="float:left;" id="map"></div>
+</div>

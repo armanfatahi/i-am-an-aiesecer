@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>{{member.name}}</title>
+    <link type="text/css" rel="stylesheet" href="/static/main.css" />
+    <link type="text/css" rel="stylesheet" href="/static/committee.css" />
+    <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# iamanaiesecer: http://ogp.me/ns/fb/iamanaiesecer#">
+        <meta property="fb:app_id" content="427564593967909" />
+        <meta property="og:type" content="iamanaiesecer:member" />
+        <meta property="og:url" content="{{member.og_url}}" />
+        <meta property="og:title" content="{{member.name}}" />
+        <meta property="og:image" content="{{member.og_image}}" />
+    </head>
+    <body>
+        <div id="fb-root">
+        </div>
+        <script>
+            (function (d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) return;
+                js = d.createElement(s); js.id = id;
+                js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=139530826169418";
+                fjs.parentNode.insertBefore(js, fjs);
+            } (document, 'script', 'facebook-jssdk'));
+        </script>
+        <div id="doc">
+            <div class="hd">
+                <a target="_blank" class="logo" href="https://www.facebook.com/I.am.an.AIESECer">
+                    <img height="70px" src="/static/logo.png" alt="I am an AIESECer" /></a>
+            </div>
+            <div id="bd" class="bd">
+                <div style="float: left; width: 500px; clear: none; vertical-align: top">
+                    <br />
+                    <br />
+                    <div  style="float: left; clear: both; display: block; width: 100%; height: 70px">
+                        {{ member.html|safe }}
+                    </div>
+                    {% if member.experience %} {% for xp in member.experience %}
+                    <p>
+                        ------------------------<br />
+                        <a target="_top" href="{{xp.role.og_url}}">{{xp.role.name}}</a>
+                        {% if xp.department %} of {{xp.department}} {% endif %}
+                         in <br />
+                        <a target="_top" href="{{xp.committee.entiti.type.og_url}}">{{xp.committee.entiti.type.name}}</a><br />
+                        <a target="_top" href="{{xp.committee.entiti.og_url}}">{{xp.committee.entiti.name}}</a> - 
+                        
+                        <a target="_top" href="{{xp.committee.og_url}}">{{xp.committee.year.name}}</a><br />
+                        <br />
+                    </p>
+                    {% endfor %} {% endif %}
+                    <br />
+                    <br />
+                    <br />
+                </div>
+                <div style="float: right; clear: none padding: 5px; width: 460px; overflow: auto; height:470px;
+                    border-width: 0px 0px 0px 1px; border-style: dotted; vertical-align: top; text-align: left">
+                    <div class="fb-like" data-href="{{member.og_url}}" data-send="true" data-width="120"
+                        data-show-faces="true">
+                    </div>
+                    <div class="fb-comments" data-href="{{member.og_url}}" data-width="440" data-num-posts="10">
+                    </div>
+                </div>
+            </div>
+            <div class="ft">
+                <a target="_blank" href="https://www.facebook.com/I.am.an.AIESECer">I am an AIESECer</a>
+                <a class="rfloat" target="_blank" href="https://www.facebook.com/AIESECinMalaysia">by
+                    AIESEC in MALAYSIA. </a>
+            </div>
+        </div>
+    </body>
+</html>

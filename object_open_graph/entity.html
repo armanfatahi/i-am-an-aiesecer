@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>I am an AIESECer</title>
+    <link type="text/css" rel="stylesheet" href="/static/main.css" />
+    <link type="text/css" rel="stylesheet" href="/static/committee.css" />
+    
+	<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# iamanaiesecer: http://ogp.me/ns/fb/iamanaiesecer#">
+	<meta property="fb:app_id" content="427564593967909" /> 
+	<meta property="og:type"   content="iamanaiesecer:entity" /> 
+	<meta property="og:url"    content="https://apps.facebook.com/iamanaiesecer/object/entity/{{entity.key}}" /> 
+	<meta property="iamanaiesecer:entity_type"    content="https://apps.facebook.com/iamanaiesecer/object/entity_type/{{entity.type.key}}" /> 
+	<meta property="iamanaiesecer:country"    content="https://apps.facebook.com/iamanaiesecer/object/country/{{entity.country.key}}" /> 
+	<meta property="og:title"  content="{{entity.name}}" /> 
+	<meta property="og:image"  content="https://i-am-an-aiesecer.appspot.com/static/object_entity.jpg" /> 
+ 
+</head>
+<body>
+    <div id="doc">
+        <div class="hd">
+            {% if member %}
+            <div id="user-info">
+                <div class="info">
+                    <a class="name" href="{{ member.link }}">{{ member.name }}, {{ member.country }}
+                    </a><a class="logout" onclick="FB.logout()">Logout</a>
+                </div>
+                <img width="50" height="50" src="{{member.picture}}">
+            </div>
+            {% endif %}
+            <!-- <a target="_blank" class="logo" href="https://www.facebook.com/I.am.an.AIESECer">
+                <img height="70px" src="/static/logo.png" alt="I am an AIESECer" /></a> -->
+        </div>
+        <div id="bd" class="bd">
+            <h3>
+                {{entity.name}}
+            </h3>
+            <br />
+            
+        </div>
+        <div class="ft">
+            <a target="_blank" href="https://www.facebook.com/I.am.an.AIESECer">I am an AIESECer</a>
+            <a class="rfloat" target="_blank" href="https://www.facebook.com/AIESECinMalaysia">by
+                AIESEC in MALAYSIA. </a>
+        </div>
+    </div>
+</body>
+</html>

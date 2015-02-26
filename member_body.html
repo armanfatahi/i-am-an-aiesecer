@@ -1,0 +1,24 @@
+<!--
+This form will be shown when a requested entity is inactive and the number of requested members are less than 5.
+
+Inputs:
+    experience_list = List[Experience()]
+    member : Member() Required
+ -->
+{% if member %}
+<div style="float: left; width: 720px;">
+    <h1>
+        {{ member.name }}</h1>
+    <br />
+    <br />
+    <label>
+        Name: {{ member.identity_name }}</label>
+    <br />
+    <label>
+        AIESEC Email: {{ member.aiesec_email }}</label>
+    <label>
+        Phone Number: {{ member.phone_number}}</label>
+    <label>
+        Skype: {{ member.skype }}</label>
+</div>
+{% else %} Member unknown! {% endif %}

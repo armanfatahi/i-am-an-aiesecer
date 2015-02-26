@@ -1,0 +1,17 @@
+﻿{% if wrong_code %}
+
+The entered code {{ wrong_code }} is not valid please enter the valid code or 
+    <button type="button" onclick="show_page('register_code_request');" >Request a new code</button>
+{% endif %}
+
+<p>
+	<h3>Verification code is sent to {{ aiesec_email }}</h3>
+        <br />
+        <br />
+        Please enter the code to verify:
+        <br />
+        <input name = "code_entered" id = "code_entered" type="text" />
+        <br />
+        <button type="button" onclick="register_code_verify();">Verify</button>
+
+</p>

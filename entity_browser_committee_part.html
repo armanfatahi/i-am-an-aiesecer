@@ -1,0 +1,56 @@
+<!--
+Inputs:
+    entity : Entity()
+    year_list : List[Year()]
+    committee : Committee()
+    committee_list : List[Committee()]
+
+    president: Member()
+-->
+<div style="clear:none; border-style: solid; border-width: 0px 0px 0px 1px; border-color: #000066; float:right; width:100%; text-align:center" align="center">
+{% if committee %}
+<div style="clear:both;float:left"  class="border">
+    <button onclick="committee_body('{{committee.key}}')" > {{committee.name }} </button>
+    <br />
+    {% if president %}
+    <p style="clear:both;float:left; text-decoration: underline; font-weight: 700; font-size: small; color: #000066;"> {{ entity.type.name }} PRESIDENT </p>
+    <div class="member-info" style="clear:both;float:left;">
+        <br />
+        <div class="info">
+            <a onclick="member_body('{{president.key}}')">
+            {{ president.name }}</a>
+        </div><br />
+        <a class="name" href="https://www.facebook.com/{{ president.username }}">
+        <img width="70" height="70" src="http://graph.facebook.com/{{ president.id }}/picture" /></a>
+    </div>
+    {% else %}
+        <a>Are you the president?</a>
+    {% endif %}
+</div>
+{% endif %}
+
+<br />
+    <br />
+{% if committee_list %}
+    <div style="clear:both;float:left;" class="border">
+    <h6>~~ Other Committees ~~</h6>
+    {% for cmte in committee_list %}
+        <button onclick="committee_body('{{cmte.key}}')" > {{cmte.name}}</button>
+        <br />
+    {% endfor %}
+    </div>
+{% endif %}
+<br />
+{% if year_list %}
+    <div class="border" style="clear:both;float:left;" id="entity_browser_committee_create_part">
+    Committee:
+    <select id="entity_browser_committee_create_select">
+    {% for year in year_list %}
+     <option   value="{{ year.key }}">{{ year.name }}</option>
+    {% endfor %}
+     </select>
+     <button onclick="entity_browser_committee_create_part('{{entity.key}}');" type="button">Start</button>
+    </div>
+{% endif %}
+
+</div>

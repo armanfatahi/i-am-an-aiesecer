@@ -1,0 +1,72 @@
+#entity_hd
+{
+    height:100px;
+    clear:both;
+    border:2px solid #EE872A;
+    border-radius:10px;
+    padding:20px;
+}
+
+#entity_info
+{
+    padding:20px;
+    float:right;
+    border:1px solid #EE872A;
+    border-radius:10px;
+    
+}
+#entity_create
+{
+    font-family:verdana;
+    padding:20px;
+    border-radius:10px;
+    border:10px solid #EE872A;
+}
+
+#entity_options
+{
+    border-style: dashed;
+    border-width: 0px 0px 0px 1px;
+    border-color: #EE872A;
+    float: right;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 0px;
+    border-radius: 0px;
+    clip: rect(0px, auto, 0px, auto);
+    overflow: visible;
+    clear: none;
+    font-size: small;
+    font-weight: 600;
+}
+
+#committee_options
+{
+    border-style: dashed;
+    border-width: 0px 0px 0px 1px;
+    border-color: #EE872A;
+    float: right;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 0px;
+    border-radius: 0px;
+    clip: rect(0px, auto, 0px, auto);
+    overflow: visible;
+    font-size: small;
+    font-weight: 600;
+    width: 100px;
+}
+
+.committee_members
+{
+    border-style: solid;
+    border-width: 1px;
+    border-color: #EE872A;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 5px;
+    border-radius: 10px;
+    clip: rect(0px, auto, 0px, auto);
+    overflow: visible;
+    font-size: small;
+    font-weight: 600;
+    width: 60%;
+    float: left;
+}

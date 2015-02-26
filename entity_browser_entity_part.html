@@ -1,0 +1,30 @@
+<!--
+Inputs:
+    entity_lc_list : List[Entity()]
+    entity_mc : Entity()
+    entity_ai : Entity()
+    flag_url: string
+-->
+{% if flag_url %}
+<img style="clear:none;display:inline; float:right;" src="{{flag_url}}" />
+{% endif %}
+{% if entity_ai %}
+    <h2>Global Entity</h2>
+    <button onclick ="entity_browser_committee_part('{{entity_ai.key}}')"> {{entity_ai.name}} </button><br />
+{% endif %}
+
+{% if entity_mc %}
+    <h3>NATIONAL ENTITY</h3>
+    <button onclick ="entity_browser_committee_part('{{entity_mc.key}}')"> {{entity_mc.name}} </button><br />
+{% endif %}
+
+<br />
+
+<h5>~~ LOCAL ENTITY ~~</h5>
+    {% if entity_lc_list %}
+        <div id="border">
+            {% for entity in entity_lc_list %}
+                <button onclick ="entity_browser_committee_part('{{entity.key}}')"> {{entity.name}} </button>
+            {% endfor %}
+        </div>
+    {% endif %}

@@ -1,0 +1,21 @@
+<!--
+This form will be shown when a requested entity is inactive and the number of requested members are less than 5.
+
+Inputs:
+    member_list : List
+    committee : Committee() Required
+ -->
+{% if committee %}
+    <div style="float:left;width:720px;">
+       <h1> {{ committee.name }}</h1>
+    </div>
+    {% if member.home_committee.key != committee.key %}
+     <div style="clear:left;float:left;" id="committee_set_home" >
+        <br /><button onclick = "committee_set_home('{{committee.key}}')">Set Home</button>
+     </div>
+    {% endif %}
+    <div style="border-style: solid; border-width: 0px 0px 0px 1px; border-color: #000066; float:right;width:240px;" id="committee_experience_part">
+    </div>
+{% else %}
+    No committee provided!
+{% endif %}

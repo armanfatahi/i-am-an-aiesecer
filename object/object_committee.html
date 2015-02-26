@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>I am an AIESECer</title>
+    <link type="text/css" rel="stylesheet" href="/static/main.css" />
+    <link type="text/css" rel="stylesheet" href="/static/committee.css" />
+    <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# iamanaiesecer: http://ogp.me/ns/fb/iamanaiesecer#">
+        <meta property="fb:app_id" content="427564593967909" />
+        <meta property="og:type" content="iamanaiesecer:committee" />
+        <meta property="og:url" content="https://apps.facebook.com/iamanaiesecer/object/committee/{{committee.key}}" />
+        <meta property="iamanaiesecer:entity" content="https://apps.facebook.com/iamanaiesecer/object/entity/{{committee.entiti.key}}" />
+        <meta property="og:title" content="{{committee.name}}" />
+        <meta property="og:image" content="https://i-am-an-aiesecer.appspot.com/static/object_committee.jpg" />
+    </head>
+    <body>
+        <div id="fb-root">
+        </div>
+        <script>
+            (function (d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) return;
+                js = d.createElement(s); js.id = id;
+                js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=139530826169418";
+                fjs.parentNode.insertBefore(js, fjs);
+            } (document, 'script', 'facebook-jssdk'));
+        </script>
+        <div id="doc">
+            <div class="hd">
+                {% if member %}
+                <div id="user-info">
+                    <div class="info">
+                        <a class="name" href="{{ member.link }}">{{ member.name }}, {{ member.country }}
+                        </a><a class="logout" onclick="FB.logout()">Logout</a>
+                    </div>
+                    <img width="50" height="50" src="{{member.picture}}">
+                </div>
+                {% endif %}
+                <!-- <a target="_blank" class="logo" href="https://www.facebook.com/I.am.an.AIESECer">
+                <img height="70px" src="/static/logo.png" alt="I am an AIESECer" /></a> -->
+            </div>
+            <div id="bd" class="bd">
+                <table>
+                    <tr>
+                        <td style="width: 300px; vertical-align: top">
+                            <h3>
+                                {{committee.entiti.country.name}}
+                            </h3>
+                            <br />
+                            <br />
+                            <h3>
+                                {{committee.name}}</h3>
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <h4>
+                                President:
+                            </h4>
+                            <br />
+                            <br />
+                            {% if president %}
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <img width="50" height="50" src="{{president.picture}}"><br />
+                            <br />
+                            <a target="_parent" href="{{ president.url }}">{{ president.name}}</a><br />
+                            {% endif %}
+                            <br />
+                            <br />
+                            <br />
+                        </td>
+                        <td style="overflow: auto; border-width: 0px 0px 0px 1px; border-style: dotted; vertical-align: top;
+                            text-align: left">
+                            <div class="fb-like" data-href="https://apps.facebook.com/iamanaiesecer/object/committee/{{committee.key}}"
+                                data-send="true" data-width="200" data-show-faces="true">
+                            </div>
+                            <div style="overflow: auto; height: 450px; width:650px">
+                                <div class="fb-comments" data-href="https://apps.facebook.com/iamanaiesecer/object/committee/{{committee.key}}"
+                                    data-width="600" data-num-posts="10">
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="ft">
+                <a target="_blank" href="https://www.facebook.com/I.am.an.AIESECer">I am an AIESECer</a>
+                <a class="rfloat" target="_blank" href="https://www.facebook.com/AIESECinMalaysia">by
+                    AIESEC in MALAYSIA. </a>
+            </div>
+        </div>
+    </body>
+</html>

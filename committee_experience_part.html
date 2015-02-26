@@ -1,0 +1,62 @@
+<!--
+
+Inputs:
+    experience : Experience()
+    request : List[Experience()]
+ -->
+
+
+{% if experience %}
+
+        {% if experience.approved %}
+            {% if pending_list %}
+                {% for request in pending_list %}
+                <div class="border" id = "{{request.member.id}}">
+                        <h5><a target="_blank" href="{{request.member.link}}">{{request.member.name}}</a><br />
+                        is {{request.role.name}}<br />
+                        in {{request.committee.name}}<br />
+                         <img src="/static/accept.png" onclick="committee_experience_approve('{{request.key}}',true);" /> 
+                         <img src="/static/remove.png" onclick="committee_experience_approve('{{request.key}}',false);" />
+                         </h5>
+                 </div>
+                {% endfor %}
+            {% endif %}
+            <div class="border">
+                <button onclick="committee_experience_leave('{{committee.key}}','Leave {{committee.name}}?')">Leave</button>
+                <button onclick="$$('committee_join_request_form').style.display='inherit';">Update Role</button><br />
+            </div>
+            <div style="display:none;" id = "committee_join_request_form">
+            <h4>Your previous role will be removed and your new role request will be applicable once it is approved.</h4>
+            <h5>Join as:</h5>
+            <select id="committee_experience_join_select">
+            {% for role in role_list %}
+      	        <option   value="{{ role.key }}">{{ role.name }}</option>
+            {% endfor %}
+            </select>
+            <br /><br />
+            <input id = "committee_experience_join_department" type="text" placeholder="Committee or Department name..." /><br /><br />
+            <button onclick="committee_experience_join('{{committee.key}}');" >Send Update Request</button>
+            </div>
+
+            <br />
+            
+        {% else %}
+            <h4>Your request to join is not approved yet.</h4>
+            <button onclick="committee_experience_leave('{{committee.key}}','Cancel join request?')">Cancel Request</button>
+        {% endif %}
+{% else %}
+    <button onclick="$$('committee_join_request_form').style.visibility='visible';">Join Request</button><br />
+    <div style="visibility:hidden;" id = "committee_join_request_form">
+
+    <h5>Join as:</h5>
+    <select id="committee_experience_join_select">
+    {% for role in role_list %}
+      	<option   value="{{ role.key }}">{{ role.name }}</option>
+    {% endfor %}
+    </select>
+    <br /><br />
+    <input id = "committee_experience_join_department" type="text" placeholder="Department name..." /><br /><br />
+    <button onclick="committee_experience_join('{{committee.key}}');" >Send Request</button>
+    </div>
+{% endif %}
+    

@@ -1,0 +1,93 @@
+<!--
+This form will be shown when a requested entity is inactive and the number of requested members are less than 5.
+
+Inputs:
+    member_list : List
+    committee : Committee() Required
+    committee_list = List(Committee()) 
+    committee_member_list: List(CommitteeMember())
+
+    Current Viewer:
+    is_member: if the memebr is already in this Committee.
+
+-->
+{% extends "base.html" %} 
+
+{% block head %} 
+    <script type="text/javascript" src="./static/committee.js"></script>
+    <link type="text/css" rel="stylesheet" href="/static/committee.css" />
+{% endblock head %} 
+
+
+{% block body %}
+{% if entity %}
+<div id="entity_hd">
+
+    {{entity.name}}
+    <form>
+    <button type="submit" value="Set Inn">Set Inn</button>
+
+    </form>
+    <div id="entity_info">
+       Country: {{ entity.country.name }}<br />
+       Contact Information: {{ entity.contact_info }}<br />
+       Check out this entity in MyAIESEC.net: {{ myaiesec_link }}<br />
+    </div>
+</div>
+
+ {% if committee %}
+     <div id="committee_options">
+         <form action="/committee_change_membership_status/" method="post">
+            <input type="hidden" name="committee_key" value="{{committee.key}}" />
+            <br /><br />
+            {% if is_member %}
+                <input type="hidden" name="action" value="leave" />
+                <button width="150px"> Leave </button>
+            {% else %}
+                <input type="hidden" name="action" value="join" />
+                <button width="150px"> Request to join </button>
+            {% endif %}
+            <br /><br />
+         </form>
+     
+ </div>
+  <div class="committee_members">
+ <h3>{{entity.name}} {{committee.name}}</h3>
+        {% for committee_member in committee_member_list %}
+               <div class="member-info">
+               <br />
+                <div class="info">
+                  <a class="name" href="https://www.facebook.com/{{ member.username }}">
+                    {{ committee_member.member.name }}</a>
+                </div><br />
+                <img width="50" height="50" src="http://graph.facebook.com/{{ committee_member.member.id }}/picture" />
+              </div>
+        {% endfor %}
+ </div>
+{% else %}
+    <h2> No active profile is available for this entity.</h2>
+    <br /> 
+    <button type="button" id="show">Create a new profile</button><br /><br />
+        <p id="create_Committee_paragraph">
+            <div id="entity_create" >
+                <form action="/entity_create_committee/" method="post">
+                <input type="hidden" name="entity_key" value="{{entity.key}}" />
+                In AIESEC each year entity board president, executive and normal members change. I am an AIESECer knows this!<br />
+                You are able to create diferent profiles for each working year e.g. 2012/2013  or 2013/2014. <br />
+                You can create several profiles for your local(member) entity.<br /><br />
+                Please enter the committee profile that you want to create:<br />
+                Committee profile name:
+                <input type="text" required name="committee_name" placeholder="e.g. 2012/2013" /><br /><br />
+                Is this entity the current active committee?
+                <input name="is_active" checked value="Yes" type="checkbox"><br /><br />
+
+                <br /><br /><br />
+                <input value="Create committee profile" type="submit" />
+                </form>
+            </div>
+        </p>
+{% endif %}             
+{% else %}
+    <h1>Entity information is not available.</h1>
+{% endif %}
+{% endblock %}

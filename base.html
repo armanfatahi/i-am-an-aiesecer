@@ -1,0 +1,111 @@
+<!--
+input:
+    member: Member()
+    home_committee : Committee()
+    message: String()
+    body_function  : String()
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>I am an AIESECer</title>
+    <script type="text/javascript" src="./static/json2.js"></script>
+    <script type="text/javascript" src="./static/base.js"></script>
+    <script type="text/javascript" src="./static/entity.js"></script>
+    <script type="text/javascript" src="./static/committee.js"></script>
+    <script type="text/javascript" src="./static/member.js"></script>
+    <script type="text/javascript" src="./static/object.js"></script>
+    <link type="text/css" rel="stylesheet" href="/static/main.css" />
+    <link type="text/css" rel="stylesheet" href="/static/committee.css" />
+    {% block head %} {% endblock %}
+</head>
+<body>
+    <div id="fb-root">
+    </div>
+    <div id="fb-root">
+    </div>
+    <script>
+        window.fbAsyncInit = function () {
+            // init the FB JS SDK
+            FB.init({
+                appId: '427564593967909',                        // App ID from the app dashboard
+                channelUrl: '//www.i-am-an-aiesecer.appspot.com/static/channel.html', // Channel file for x-domain comms
+                status: true,                                 // Check Facebook Login status
+                cookie: true,
+                xfbml: true                                  // Look for social plugins on the page
+            });
+            FB.Canvas.setAutoResize(100);
+            // Additional initialization code such as adding Event Listeners goes here
+        };
+
+        // Load the SDK asynchronously
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) { return; }
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/all.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        } (document, 'script', 'facebook-jssdk'));
+
+
+        (function () {
+            var e = document.createElement('script');
+            e.async = true;
+            e.src = document.location.protocol +
+            '//connect.facebook.net/en_US/all.js';
+            document.getElementById('fb-root').appendChild(e);
+        } ());
+
+    </script>
+    <div id="doc">
+        <div class="hd">
+            {% if member %}
+            <div id="user-info">
+                <div class="info">
+                    <a class="name" href="{{ member.link }}">{{ member.name }}, {{ member.country }}
+                    </a><a class="logout" onclick="FB.logout()">Logout</a>
+                </div>
+                <img width="50" height="50" src="{{member.picture}}">
+            </div>
+            {% endif %}
+            <!-- <a target="_blank" class="logo" href="https://www.facebook.com/I.am.an.AIESECer">
+                <img height="70px" src="/static/logo.png" alt="I am an AIESECer" /></a> -->
+        </div>
+        <div id="menu" class="menu">
+            {% if member.home_committee %}
+            <button onclick="committee_body('{{member.home_committee.key}}')">
+                Home</button>
+            {% endif %} {% if member.aiesec_email %}
+            <button onclick="entity_browser_body(null)">
+                Entity Browser</button>
+                {% endif %}
+        </div>
+        {% if message %}
+        <div class="message {{ message.type }}">
+            {{ message.content|safe }}</div>
+        {% endif %}
+        <div id="error_message" class="message error">
+        </div>
+        <div id="success_message" class="message success">
+        </div>
+        <div id="bd" class="bd">
+            {% block body %} {% if body_function %}
+            <script>
+                {{ body_function|safe }}
+            </script>
+            {% endif %} {% endblock %}
+        </div>
+        <div class="ft">
+            <a target="_blank" href="https://www.facebook.com/I.am.an.AIESECer">I am an AIESECer</a>
+            <a class="rfloat" target="_blank" href="https://www.facebook.com/AIESECinMalaysia">by
+                AIESEC in MALAYSIA. </a>
+        </div>
+    </div>
+    <script src="/static/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="./static/mapdata.js"></script>
+    <script type="text/javascript" src="./static/worldmap.js"></script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+{% extends "base.html" %} {% block head %} {% endblock %} {% block body %}
+<!-- Column 1 start -->
+<h5>
+    <i>This application is not officially launched yet. please come back later.</i></h5>
+<br />
+<br />
+<h3>
+    Welcome to I am an AIESECer</h3>
+<br />
+<br />
+<h4>
+    I am an AIESECer is a networking platform for AIESEC members in Facebook.</h4>
+<br />
+<br />
+<p>
+    This application aims to provide a platform enabling AIESECers to connect in a virtual
+    structured world. The main purpose of this application is to create AIESECer identity
+    for you in facebook and enable you to
+    <ul>
+        <li>Connect to your teammates</li>
+        <li>Record your AIESEC experience</li>
+        <li>Provide an easy access to your profile, files, and wikis in MyAIESEC.net</li>
+    </ul>
+</p>
+<p>
+    <h4>
+        Yes, I am an AIESECer!</h4>
+    <br />
+    <br />
+    This system is exclusively for AIESECers. We need you to confirm your AIESEC email
+    to be encountered as an AIESECer and be able to utilize this application.
+    <br />
+    <br />
+    <h5>
+        How can I verify my AIESEC email?</h5>
+    <br />
+    <br />
+    <ul>
+        {% if aiesec_email_found %}
+        <li>This is my AIESEC email: {{aiesec_email_found}}
+            <button type="button" onclick="verified('{{aiesec_email_found}}');">
+                Add this email to my account</button>
+        </li>
+        {% endif%}
+        <li>{% if login_aiesec_email %} This is my AIESEC email: {{login_aiesec_email}}
+            <button type="button" onclick="verified('{{login_aiesec_email}}');">
+                Add this email to my account</button>
+            {% else %} Authorize <strong>I am an AIESECer</strong> to verify your aiesec.net
+            email. <a target="_top" href="{{ url }}">{{ url_linktext }}</a> {% endif %}
+        </li>
+        {% if code_sent_email %}
+        <li>Ask for a verification Email.</li>
+        <button type="button" onclick="show_page('register_code_request');">
+            Request a new code</button>
+        an verification code is sent to {{code_sent_email}}
+        <input type="hidden" id="aiesec_email" value="{{code_sent_email}}" />
+        <button type="button" onclick="register_code_sent();">
+            Enter verification code</button>
+        {% else %}
+        <li>Ask for a verification Email.</li>
+        <button type="button" onclick="show_page('register_code_request');">
+            Request a code</button>
+        {% endif %}
+    </ul>
+</p>
+<!-- Column 1 end -->
+{% endblock %}
